@@ -26,28 +26,43 @@ class BottomSheetWidget extends StatelessWidget {
             width: size.width,
             fit: BoxFit.cover,
           ),
-          const Divider(),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Divider(),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                ),
+                child: Text(
                   data.title,
                   style: const TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(data.deskripsi),
-              ],
+              ),
+              const Divider(),
+              const SizedBox(
+                height: 4,
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+            ),
+            child: Text(
+              data.deskripsi,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ),
+          const SizedBox(
+            height: 40,
+          )
         ],
       ),
     );

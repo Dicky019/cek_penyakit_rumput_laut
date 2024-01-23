@@ -47,7 +47,8 @@ print(f'Validation Accuracy: {(100*val_accuracy):.2f}%')
 # Choose an image from the validation set
 # Testing
 # image_path = f'{dataset_path}/penyakit ice-ice/seaweed-2.jpg'
-image_path = f'{dataset_path}/penyakit bulu kucing/WhatsApp Image 2023-01-14 at 19.42.57.jpeg'
+image_path = f'{dataset_path}/rumput laut sehat/IMG_6080.JPG'
+# image_path = f'{dataset_path}/rumput laut sehat/IMG_6071.JPG'
 
 # Load and preprocess the custom image
 img = Image.open(image_path).convert('RGB')
