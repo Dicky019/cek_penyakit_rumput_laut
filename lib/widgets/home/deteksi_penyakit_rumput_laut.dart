@@ -31,7 +31,7 @@ class _DeteksiPenyakitRumputLautWidgetState
             style: TextStyle(fontSize: 16),
           ),
           const Text(
-            "Deteksi Penyakit Rumput Laut Ini Menggunakan Tensor Flow Lite dan Hanya Untuk Mendeteksi: 1. Penyakit ice-ice, 2. Penyakit kerak bryzoan, 3. Penyakit bulu kucing.",
+            "Deteksi Penyakit Rumput Laut Ini Menggunakan Sklearn Neighbors dan KKN Hanya Untuk Mendeteksi: 1. Penyakit ice-ice, 2. Penyakit kerak bryzoan, 3. Penyakit bulu kucing.",
             style: TextStyle(
               color: Colors.black54,
             ),

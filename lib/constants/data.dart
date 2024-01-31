@@ -57,40 +57,44 @@ class DataConstants {
     JenisRumputLautModel(
       title: "Ice-Ice",
       deskripsi: """
-    Alga merah merupakan kelompok rumput laut dengan jumlah spesies paling banyak, yaitu sekitar 6000 jenis (Algaebase.org). Salah satu jenis alga merah yang telah banyak dimanfaatkan ialah Kappaphycus alvarezii. Rumput laut merah mempunyai kenampakan warna talus yang bervariasi. 
-    
-    Warna talus yang bervariasi disebabkan adanya komposisi pigmen yang terdiri dari klorofil a, klorofil d, dan fikobiliprotein (R-fikosianin, allofikosianin serta fikoeritrin).  
-    
-    Fikoeritrin merupakan pigmen dominan pada alga merah. Pigmen tersebut memberikan kenampakan warna merah pada alga. Alga merah mempunyai kemampuan adaptasi kromatik, yaitu penyesuaian warna talus berdasarkan kualitas pencahayaan yang diterima.
-    """,
+Ice-ice merupakan penyakit yang banyak menyerang rumput laut. Penyakit ini ditandai dengan timbulnya bintik/bercak-bercak merah pada sebagian thallus yang lama kelamaan menjadi kuning pucat dan akhirnya berangsur-angsur menjadi putih. Thallus menjadi rapuh dan mudah putus.
+
+Ice-ice adalah penyakit yang banyak menyerang rumput laut kelompok karaginofit termasuk K. alvarezii. Pertama kali dilaporkan pada tahun 1974, ketika penyakit ini menyerang hampir seluruh rumput laut yang dibudidaya di negara Filipina.
+
+Penyakit ini ditandai dengan timbulnya beberapa gejala seperti:
+
+1. Pertumbuhan yang lambat,
+2. Timbul bintik atau bercak pada sebagian thallus,
+3. Thallus tampak kekuningan yang secara perlahan berangsur menjadi putih dan mudah terputus,
+4. Rumput laut berlendir.
+""",
       imagePath: 'assets/images/ice-ice.jpg',
     ),
     JenisRumputLautModel(
       title: "Kerak Bryzoan",
       deskripsi: """
-    Jenis rumput laut dari kelas Chlorophyceae umumnya berwarna hijau dengan bentuk talus berupa lembaran, batangan atau bulatan yang bersifat lunak, keras atau siphonous, terdiri atas uniseluler atau multiseluler. Caulerpa sp. merupakan salah satu jenis rumput laut dari kelas Chlorophyceae. Caulerpa sp. merupakan rumput laut yang sering dikonsumsi sebagai sayuran dan lalapan di daerah tropikal Pasifik terutama di Filipina dan Indonesia. 
-    
-    Caulerpa sp. mempunyai kandungan gizi yang cukup tinggi, antara lain protein (10,7%) dan karbohidrat (27,2%), sedangkan lemaknya bersifat fluktuatif yaitu sekitar 0,3%, kandungan air antara 16–20%, serta kandungan serat kasar berkisar antara 4,4–15,5%. Caulerpa sp. merupakan salah satu jenis alga yang mempunyai kesamaan komposisi pigmen dengan tumbuhan tingkat tinggi. 
-    
-    Jenis rumput laut yang termasuk dalam kelompok alga hijau mempunyai pigmen fotosintetik yaitu klorofil a dan b dengan jumlah yang melimpah. Selain pigmen utama yang berupa klorofil, alga hijau juga mempunyai beberapa pigmen asesoris, yaitu karotenoid. Karotenoid utama pada alga hijau diantaranya β-karoten, lutein, v iolaxanthin, antheraxanthin, zeaxanthin, dan neoxanthin.
-    """,
+Penyakit kerak bryzoan adalah butiran-butiran kecil yang membentuk gumpalan pada tanaman rumput laut, berwarna hitam dan ada juga berwarna coklat.
+
+Penyakit ini disebabkan karena serangan hama seperti Membranipora spp. Gejala yang ditimbulkan adalah pada batang rumput laut terlihat seperti kerak yang menempel berwarna hitam.
+""",
       imagePath: 'assets/images/kerak_bryzoan.jpeg',
     ),
     JenisRumputLautModel(
       title: "Bulu Kucing",
       deskripsi: """
-    Alga coklat mempunyai bentuk yang bervariasi tetapi hampir sebagian besar berwarna coklat atau pirang. Warna tersebut tidak berubah walaupun alga ini telah dikeringkan. Alga coklat mengandung beberapa pigmen fotosintetik yaitu karoten, fukoxantin, klorofil a, dan klorofil c. Sargassum sp. merupakan rumput laut yang termasuk dalam kelas Phaeophyceae. Di Indonesia, Sargassum sp. memiliki sebaran yang luas dan bervariasi. 
-    
-    Jenis rumput laut tersebut termasuk tumbuhan yang dominan dan terdistribusi di seluruh perairan Indonesia, antara lain di Selat Sunda, Perairan Bangka Belitung, Karimunjawa, Pantai Selatan Pulau Jawa, Pantai Bali, Pantai Lombok, Kupang, Kalimantan Timur, Sulawesi Tenggara, Sulawesi Utara, Ternate, Ambon, Teluk Lampung, dan Perairan Natuna. Sargassum sp. mempunyai banyak senyawa yang dapat dimanfaatkan untuk berbagai keperluan. 
-    
-    Kandungan senyawa kimia utama Sargassum sp. antara lain, alginat, protein, vitamin C, tanin, yodium, dan fenol (obat gondok, anti bakteri dan tumor). Kandungan koloid alginat dari Sargassum sp. sangat penting, karena digunakan cukup luas dalam industri, yaitu sebagai bahan pengental, pensuspensi, penstabil, pembentuk film, gel, disintegrating agent, dan bahan pengemulsi. Sehubungan dengan fungsi tersebut, maka alginat banyak dibutuhkan untuk berbagai industri, seperti farmasi (5%), tekstil (50%), makanan dan minuman (30%), kertas (6%), dan industri lainnya (9%). Sargassum sp. juga mengandung pigmen fotosintetik.""",
+Penyakit Bulu kucing merupakan istilah umum yang digunakan oleh pembudidaya untuk menyebutkan jenis penyakit tersebut.  Bulu Kucing merupakan jenis penyakit atau hama yang hidupnya menempel pada bagian thallus rumput, Epifit tersebut mengambil nutrisi dari tanaman rumput laut.
+
+Bulu kucing yang menempel pada rumput laut kerap berwarna coklat dan dan mengambil banyak nutrsi padarumput laut, sehingga banyak merugikan petani.
+""",
       imagePath: 'assets/images/bulu_kucing.png',
     ),
     JenisRumputLautModel(
       title: "Rumput Laut Sehat",
       deskripsi: """
-    Rumput laut sehat tidak menunjukkan tanda-tanda gangguan seperti Ice-Ice, Kerak Bryozoan, atau Bulu Kucing. Ini terlihat dari warna hijau cerah, tekstur baik, dan pertumbuhan merata tanpa adanya struktur kristal es atau organisme yang melekat pada permukaannya. Monitoring dan pemeliharaan rutin penting untuk mencegah gangguan pada rumput laut.
-    """,
+Rumput laut yang sehat, umumnya memliki warna yang cerah, bebas dari kotoran atau lumut dan ornanisme penempel lainnya.
+
+Selain itu rumput laut yang sehat juga merupakan bibit yang segar tampak dari thallusnya dengan warna yang cerah dan Thallus berbentuk silindris atau gepeng dengan percabangan, mulai dari yang sederhana sampai pada yang rumit dan rimbun dan juga pertumbuhan yang optimal lentur dan tidak mudah patah.
+""",
       imagePath: 'assets/images/rumput_sehat.jpg',
     ),
   ];
