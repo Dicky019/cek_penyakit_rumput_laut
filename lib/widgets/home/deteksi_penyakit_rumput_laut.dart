@@ -102,49 +102,12 @@ _showCustomDialog(
             ),
           ),
         ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  data.predictedClass.toUpperCase(),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Container(
-                  height: 35,
-                  // width: 35,
-                  padding: const EdgeInsets.all(6),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.lightGreen),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  // child:
-                  child: Center(
-                    child: Text(
-                      "${data.predictedAccuracy}%",
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const Divider(),
-            Text(
-              data.solusi,
-              textAlign: TextAlign.left,
-              style: const TextStyle(
-                fontSize: 16,
+        content: data.predictedClass == null
+            ? DialogSuccsec(data: data)
+            : const Icon(
+                Icons.close_rounded,
+                size: 30,
               ),
-            ),
-          ],
-        ),
         actions: [
           TextButton(
             onPressed: () {
@@ -156,4 +119,56 @@ _showCustomDialog(
       );
     },
   );
+}
+
+class DialogSuccsec extends StatelessWidget {
+  final PenyakitRumputLaut data;
+  const DialogSuccsec({super.key, required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              (data.predictedClass ?? "").toUpperCase(),
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 5),
+            Container(
+              height: 35,
+              // width: 35,
+              padding: const EdgeInsets.all(6),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.lightGreen),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              // child:
+              child: Center(
+                child: Text(
+                  "${data.predictedAccuracy}%",
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const Divider(),
+        Text(
+          data.solusi,
+          textAlign: TextAlign.left,
+          style: const TextStyle(
+            fontSize: 16,
+          ),
+        ),
+      ],
+    );
+  }
 }

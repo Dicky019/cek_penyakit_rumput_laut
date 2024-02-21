@@ -47,7 +47,7 @@ class PredictionPenyakitRumputLautService {
       EasyLoading.show();
       log('File', name: "imageX");
       final image = File(imageX.path);
-      await Future.delayed(Duration(seconds: 1));
+      // await Future.delayed(const Duration(seconds: 1));
       final result = await uploadFile(image);
       log(result.toString(), name: "result");
 

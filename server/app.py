@@ -13,7 +13,7 @@ app = Flask(__name__)
 dataset_path = '/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/Gambar penyakit rumput laut/'
 
 # Create a list of class names
-class_names = ['penyakit bulu kucing', 'penyakit ice-ice', 'penyakit kerak bryzoan', 'rumput laut sehat'] 
+class_names = ['bukan rumput laut','penyakit bulu kucing', 'penyakit ice-ice', 'penyakit kerak bryzoan', 'rumput laut sehat'] 
 
 # Load images using ImageDataGenerator
 datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
