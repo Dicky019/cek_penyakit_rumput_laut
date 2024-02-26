@@ -10,7 +10,7 @@ from PIL import Image
 dataset_path = '/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/Gambar penyakit rumput laut'
 
 # Create a list of class names
-class_names = ['penyakit bulu kucing', 'penyakit ice-ice', 'penyakit kerak bryzoan','rumput laut sehat']
+class_names = ['penyakit bulu kucing', 'penyakit ice-ice', 'penyakit kerak bryzoan', 'rumput laut sehat'] 
 
 # Load images using ImageDataGenerator
 datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
@@ -46,8 +46,8 @@ print(f'Validation Accuracy: {(100*val_accuracy):.2f}%')
 
 # Choose an image from the validation set
 # Testing
-# image_path = f'{dataset_path}/penyakit ice-ice/seaweed-2.jpg'
-image_path = f'{dataset_path}/rumput laut sehat/IMG_6080.JPG'
+# image_path = f'{dataset_path}/penyakit ice-ice/IMG_6965.JPG'
+image_path = f'{dataset_path}/penyakit bulu kucing/IMG_7026.JPG'
 # image_path = f'{dataset_path}/rumput laut sehat/IMG_6071.JPG'
 
 # Load and preprocess the custom image
