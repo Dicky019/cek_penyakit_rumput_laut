@@ -1,10 +1,12 @@
 
+import PIL
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 from PIL import Image
+import google.generativeai as genai
 
 # Set the path to your custom dataset
 dataset_path = '/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/Gambar penyakit rumput laut'
@@ -46,21 +48,54 @@ print(f'Validation Accuracy: {(100*val_accuracy):.2f}%')
 
 # Choose an image from the validation set
 # Testing
-# image_path = f'{dataset_path}/penyakit ice-ice/IMG_6965.JPG'
-image_path = f'{dataset_path}/penyakit bulu kucing/IMG_7026.JPG'
-# image_path = f'{dataset_path}/rumput laut sehat/IMG_6071.JPG'
-
-# Load and preprocess the custom image
+# image_path = f'/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/bukan rumput laut/1-boto2222.jpg'
+image_path = f'/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/bukan rumput laut/download (2).jpg'
+# image_path = f'{dataset_path}/penyakit bulu kucing/IMG_7026.JPG'
 img = Image.open(image_path).convert('RGB')
 img = img.resize((28, 28))
-img_array = tf.keras.preprocessing.image.img_to_array(img)
-img_array = img_array.reshape(1, -1)
-img_array = img_array / 255.0  # Normalize pixel values
+# image_path = f'{dataset_path}/rumput laut sehat/IMG_6071.JPG'
 
-# Make predictions on the chosen image
-prediction = knn_model.predict(img_array)
+GOOGLE_API_KEY="AIzaSyBZQ7ddMSnbvKFIiILqPr8amtPacqkhHDk"
 
-# Display the image with class names
-plt.imshow(img)
-plt.title(f'Predicted Label: {class_names[prediction[0]]}')
-plt.show()
+genai.configure(api_key=GOOGLE_API_KEY)
+
+def image_is_rumput_laut(image_path:str) : 
+    img = PIL.Image.open(image_path)
+    model = genai.GenerativeModel('gemini-pro-vision')
+
+    response = model.generate_content(["apakah ini rumput laut jika iya jawabanya harus boolean python",img])
+    response = model.generate_content(["apakah ini rumput laut jika iya berapa predicted accuracy dalam percent jawabanya dalam Number",img])
+
+    result = eval(response.text)
+
+    print({'response':response.text,'result':result})
+
+    return result
+
+if(image_is_rumput_laut(image_path)):
+    # Load and preprocess the custom image
+
+    img_array = tf.keras.preprocessing.image.img_to_array(img)
+    img_array = img_array.reshape(1, -1)
+    img_array = img_array / 255.0  # Normalize pixel values
+
+    # Make predictions on the chosen image
+    prediction = knn_model.predict(img_array)
+
+    # Display the image with class names
+    plt.imshow(img)
+    plt.title(f'Predicted Label: {class_names[prediction[0]]}')
+    plt.show()
+else:
+    # Load and preprocess the custom image
+    img_array = tf.keras.preprocessing.image.img_to_array(img)
+    img_array = img_array.reshape(1, -1)
+    img_array = img_array / 255.0  # Normalize pixel values
+
+    # Make predictions on the chosen image
+    prediction = knn_model.predict(img_array)
+
+    # Display the image with class names
+    plt.imshow(img)
+    plt.title(f'Predicted Label: Bukan rumput laut')
+    plt.show()

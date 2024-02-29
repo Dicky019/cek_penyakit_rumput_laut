@@ -39,23 +39,28 @@ k_value = 5
 knn_model = KNeighborsClassifier(n_neighbors=k_value)
 knn_model.fit(x_train, y_train.argmax(axis=1))
 
-@app.route('/', methods=['POST'])
-def predict():
-    # Check if the post request has the file part
-    if 'file' not in request.files:
-        return jsonify(error='No file part')
 
-    file = request.files['file']
+import google.generativeai as genai
 
-    # If the user does not select a file, submit an empty part without filename
-    if file.filename == '':
-        return jsonify(error='No selected file')
+import PIL.Image
 
-    if file:
-        # Save the uploaded image temporarily
-        temp_path = 'temp.jpg'
-        file.save(temp_path)
+GOOGLE_API_KEY="AIzaSyBZQ7ddMSnbvKFIiILqPr8amtPacqkhHDk"
 
+genai.configure(api_key=GOOGLE_API_KEY)
+
+def image_is_rumput_laut(image_path:str) : 
+    img = PIL.Image.open(image_path)
+    model = genai.GenerativeModel('gemini-pro-vision')
+
+    response = model.generate_content(["apakah ini rumput laut jika iya return true tidak false dan jawabanya harus boolean python",img])
+
+    result = eval(response.text)
+
+    print({'response':response.text,'result':result})
+
+    return result
+
+def cek_penyakit_rumput_laut(temp_path:str) :
         # Load and preprocess the custom image
         img = tf.keras.preprocessing.image.load_img(temp_path, target_size=(28, 28))
         img_array = tf.keras.preprocessing.image.img_to_array(img)
@@ -76,7 +81,33 @@ def predict():
         print(indices,distances)
 
         result = {'predicted_class': predicted_class, 'predicted_accuracy': float(predicted_accuracy)}
-        return jsonify(result)
+
+        return result
+
+@app.route('/', methods=['POST'])
+def predict():
+    # Check if the post request has the file part
+    if 'file' not in request.files:
+        return jsonify(error='No file part')
+
+    file = request.files['file']
+
+    # If the user does not select a file, submit an empty part without filename
+    if file.filename == '':
+        return jsonify(error='No selected file')
+
+    if file:
+        # Save the uploaded image temporarily
+        temp_path = 'temp.jpg'
+        file.save(temp_path)
+
+        if(image_is_rumput_laut(temp_path)):
+            result = cek_penyakit_rumput_laut(temp_path)
+            return jsonify(result)
+        else :
+            result = {'predicted_class': "bukan rumput laut",}
+            return jsonify(result)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
