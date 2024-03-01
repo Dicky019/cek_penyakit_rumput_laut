@@ -1,4 +1,5 @@
 # import os
+import ast
 import numpy as np
 import tensorflow as tf
 # from tensorflow.keras.preprocessing import image
@@ -13,7 +14,7 @@ app = Flask(__name__)
 dataset_path = '/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/Gambar penyakit rumput laut/'
 
 # Create a list of class names
-class_names = ['bukan rumput laut','penyakit bulu kucing', 'penyakit ice-ice', 'penyakit kerak bryzoan', 'rumput laut sehat'] 
+class_names = ['penyakit bulu kucing', 'penyakit ice-ice', 'penyakit kerak bryzoan', 'rumput laut sehat'] 
 
 # Load images using ImageDataGenerator
 datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
@@ -52,13 +53,23 @@ def image_is_rumput_laut(image_path:str) :
     img = PIL.Image.open(image_path)
     model = genai.GenerativeModel('gemini-pro-vision')
 
-    response = model.generate_content(["apakah ini rumput laut jika iya return true tidak false dan jawabanya harus boolean python",img])
+    response = model.generate_content([
+        """
+        apakah ini rumput laut jawabanya dalam python {'prediction': boolean,'reason' : str} 
+        """,img])
 
-    result = eval(response.text)
+    map_str = response.text.strip()
 
-    print({'response':response.text,'result':result})
+    print(map_str)
+
+    # Convert the JSON string into a Python dictionary
+    result = result = ast.literal_eval(map_str)
+
+    print(result)
 
     return result
+
+
 
 def cek_penyakit_rumput_laut(temp_path:str) :
         # Load and preprocess the custom image
@@ -74,13 +85,12 @@ def cek_penyakit_rumput_laut(temp_path:str) :
         # Calculate the predicted accuracy
         distances, indices = knn_model.kneighbors(img_array)
 
-        num = 100 if np.mean(distances)*10 > 100 else np.mean(distances)*10
+        num = 100 if np.mean(distances)*5 > 100 else np.mean(distances)*5
         
         predicted_accuracy = f'{(num):.2f}'
 
-        print(indices,distances)
-
         result = {'predicted_class': predicted_class, 'predicted_accuracy': float(predicted_accuracy)}
+        print(result,np.mean(indices)*5,np.mean(distances)*5)
 
         return result
 
@@ -101,11 +111,13 @@ def predict():
         temp_path = 'temp.jpg'
         file.save(temp_path)
 
-        if(image_is_rumput_laut(temp_path)):
+        is_rumput_laut = image_is_rumput_laut(temp_path)
+
+        if(is_rumput_laut["prediction"]):
             result = cek_penyakit_rumput_laut(temp_path)
             return jsonify(result)
         else :
-            result = {'predicted_class': "bukan rumput laut",}
+            result = {'predicted_class': "bukan rumput laut",'reason' : is_rumput_laut["reason"]}
             return jsonify(result)
 
 

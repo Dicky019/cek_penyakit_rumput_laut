@@ -35,7 +35,7 @@ def image_is_rumput_laut(image_path:str) :
 
     response = model.generate_content([
         """
-        apakah ini rumput laut jika iya jawabanya dalam python {'prediction': boolean,'reason' : str} 
+        apakah ini rumput laut jawabanya dalam python {'prediction': boolean,'reason' : str} 
         """,img])
 
     map_str = response.text.strip()
@@ -43,7 +43,7 @@ def image_is_rumput_laut(image_path:str) :
     print(map_str)
 
     # Convert the JSON string into a Python dictionary
-    result = result = ast.literal_eval(map_str)
+    result = ast.literal_eval(map_str)
 
     print(result)
 

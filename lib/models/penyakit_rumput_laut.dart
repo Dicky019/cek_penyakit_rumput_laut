@@ -30,11 +30,11 @@ class PenyakitRumputLaut {
     File image,
   ) {
     final predictedClass = map['predicted_class'] as String?;
-    final predicted = map['predicted'] as String?;
+    final predicted = map['reason'] as String?;
     return PenyakitRumputLaut(
       predictedAccuracy: 100,
       predictedClass: predictedClass,
-      solusi: predicted ?? "-",
+      solusi: (predicted?.toUpperCase() ?? "-"),
       image: image,
     );
   }

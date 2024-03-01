@@ -102,12 +102,7 @@ _showCustomDialog(
             ),
           ),
         ),
-        content: data.predictedClass == null
-            ? DialogSuccsec(data: data)
-            : const Icon(
-                Icons.close_rounded,
-                size: 30,
-              ),
+        content: DialogSuccsec(data: data),
         actions: [
           TextButton(
             onPressed: () {
