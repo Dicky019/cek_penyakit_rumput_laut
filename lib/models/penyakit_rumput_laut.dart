@@ -20,6 +20,30 @@ class PenyakitRumputLaut {
     File image,
   ) {
     final predictedClass = map['predicted_class'] as String?;
+    return predictedClass == "bukan rumput laut"
+        ? PenyakitRumputLaut._bukanRumputLaut(map, image)
+        : PenyakitRumputLaut._rumputLaut(map, image);
+  }
+
+  factory PenyakitRumputLaut._bukanRumputLaut(
+    Map<String, dynamic> map,
+    File image,
+  ) {
+    final predictedClass = map['predicted_class'] as String?;
+    final predicted = map['predicted'] as String?;
+    return PenyakitRumputLaut(
+      predictedAccuracy: 100,
+      predictedClass: predictedClass,
+      solusi: predicted ?? "-",
+      image: image,
+    );
+  }
+
+  factory PenyakitRumputLaut._rumputLaut(
+    Map<String, dynamic> map,
+    File image,
+  ) {
+    final predictedClass = map['predicted_class'] as String?;
     return PenyakitRumputLaut(
       predictedAccuracy: map['predicted_accuracy'] as double,
       predictedClass: predictedClass,
