@@ -1,4 +1,3 @@
-
 import ast
 import PIL
 import tensorflow as tf
@@ -19,8 +18,8 @@ class_names = ['penyakit bulu kucing', 'penyakit ice-ice', 'penyakit kerak bryzo
 # Choose an image from the validation set
 # Testing
 # image_path = f'/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/bukan rumput laut/1-boto2222.jpg'
-image_path = f'/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/bukan rumput laut/download (2).jpg'
-# image_path = f'{dataset_path}/penyakit bulu kucing/IMG_7026.JPG'
+# image_path = f'/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/bukan rumput laut/download (2).jpg'
+image_path = f'{dataset_path}/penyakit bulu kucing/IMG_7026.JPG'
 img = Image.open(image_path).convert('RGB')
 img = img.resize((28, 28))
 # image_path = f'{dataset_path}/rumput laut sehat/IMG_6071.JPG'
@@ -38,7 +37,7 @@ def image_is_rumput_laut(image_path:str) :
         apakah ini rumput laut jawabanya dalam python {'prediction': boolean,'reason' : str} 
         """,img])
 
-    map_str = response.text.strip()
+    map_str = response.text.strip().replace("```python","").replace("```","")
 
     print(map_str)
 

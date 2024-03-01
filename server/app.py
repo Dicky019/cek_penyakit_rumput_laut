@@ -58,7 +58,7 @@ def image_is_rumput_laut(image_path:str) :
         apakah ini rumput laut jawabanya dalam python {'prediction': boolean,'reason' : str} 
         """,img])
 
-    map_str = response.text.strip()
+    map_str = response.text.strip().replace("```python","").replace("```","")
 
     print(map_str)
 
