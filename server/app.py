@@ -87,7 +87,8 @@ def cek_penyakit_rumput_laut(temp_path:str) :
 
         num = 100 if np.mean(distances)*5 > 100 else np.mean(distances)*5
         
-        predicted_accuracy = f'{(num):.2f}'
+        predicted_accuracy = f'{(num):.2f}' # 00.00
+        predicted_accuracy = f'{(num):.2f}' # 00.00
 
         result = {'predicted_class': predicted_class, 'predicted_accuracy': float(predicted_accuracy)}
         print(result,np.mean(indices)*5,np.mean(distances)*5)

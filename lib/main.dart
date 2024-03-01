@@ -6,6 +6,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:cek_penyakit_rumput_laut/helper/local_storage.dart';
 import 'package:cek_penyakit_rumput_laut/pages/onboarding.dart';
 
+import 'pages/home.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configLoading();
@@ -20,8 +22,7 @@ void main() async {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreen),
         // useMaterial3: true,
       ),
-      // home: isOnboardingFinis ? const HomePage() : const OnboardingPage(),
-      home: const OnboardingPage(),
+      home: isOnboardingFinis ? const HomePage() : const OnboardingPage(),
       builder: EasyLoading.init(),
     ),
   );

@@ -84,33 +84,40 @@ _showCustomDialog(
     context: context,
     builder: (BuildContext context) {
       final size = MediaQuery.sizeOf(context);
-      return AlertDialog(
-        titlePadding: EdgeInsets.zero,
-        title: Container(
-          height: 180,
-          width: size.width - 30,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(28),
-              topRight: Radius.circular(28),
-            ),
-            image: DecorationImage(
-              image: FileImage(
-                data.image,
-              ),
-              fit: BoxFit.cover,
-            ),
-          ),
+      return Theme(
+        data: ThemeData(
+          colorScheme: data.isBukanRumputLaut
+              ? ColorScheme.fromSeed(seedColor: Colors.redAccent)
+              : ColorScheme.fromSeed(seedColor: Colors.lightGreen),
         ),
-        content: DialogSuccsec(data: data),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: const Text('Ok'),
+        child: AlertDialog(
+          titlePadding: EdgeInsets.zero,
+          title: Container(
+            height: 180,
+            width: size.width - 10,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(28),
+                topRight: Radius.circular(28),
+              ),
+              image: DecorationImage(
+                image: FileImage(
+                  data.image,
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-        ],
+          content: DialogSuccsec(data: data),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Kembali'),
+            ),
+          ],
+        ),
       );
     },
   );
@@ -129,30 +136,39 @@ class DialogSuccsec extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              (data.predictedClass ?? "").toUpperCase(),
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
-            ),
-            const SizedBox(height: 5),
-            Container(
-              height: 35,
-              // width: 35,
-              padding: const EdgeInsets.all(6),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.lightGreen),
-                borderRadius: BorderRadius.circular(30),
-              ),
-              // child:
-              child: Center(
+            Expanded(
+              flex: 7,
+              child: FittedBox(
+                fit: BoxFit.fitWidth,
                 child: Text(
-                  "${data.predictedAccuracy}%",
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  (data.predictedClass ?? "").toUpperCase(),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ),
+            Spacer(flex: data.predictedAccuracy != null ? 1 : 3),
+            if (data.predictedAccuracy != null)
+              Expanded(
+                flex: 2,
+                child: Container(
+                  height: 35,
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.lightGreen),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  // child:
+                  child: Center(
+                    child: Text(
+                      "${data.predictedAccuracy?.toInt() ?? "0"}%",
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
           ],
         ),
         const Divider(),

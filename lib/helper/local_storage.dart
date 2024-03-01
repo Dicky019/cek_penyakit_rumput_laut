@@ -6,5 +6,6 @@ class LocalStorageHelper {
   static Future<bool> isOnboardingFinis() async =>
       (await prefs).getBool("key") ?? false;
 
-  static Future<bool> setOnboardingFinis() async => (await prefs).setBool("key", true);
+  static Future<bool> setOnboardingFinis() async =>
+      (await prefs).setBool("key", true);
 }

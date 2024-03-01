@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:cek_penyakit_rumput_laut/constants/data.dart';
 
 class PenyakitRumputLaut {
-  final double predictedAccuracy;
+  final double? predictedAccuracy;
   final String? predictedClass;
   final String solusi;
   final File image;
@@ -14,6 +14,8 @@ class PenyakitRumputLaut {
     required this.solusi,
     required this.image,
   });
+
+  bool get isBukanRumputLaut => predictedClass == "bukan rumput laut";
 
   factory PenyakitRumputLaut.fromResult(
     Map<String, dynamic> map,
@@ -32,7 +34,7 @@ class PenyakitRumputLaut {
     final predictedClass = map['predicted_class'] as String?;
     final predicted = map['reason'] as String?;
     return PenyakitRumputLaut(
-      predictedAccuracy: 100,
+      predictedAccuracy: null,
       predictedClass: predictedClass,
       solusi: (predicted?.toUpperCase() ?? "-"),
       image: image,
