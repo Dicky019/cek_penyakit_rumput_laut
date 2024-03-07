@@ -1,4 +1,5 @@
 import ast
+import os
 import PIL
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
@@ -9,7 +10,10 @@ from PIL import Image
 import google.generativeai as genai
 
 # Set the path to your custom dataset
-dataset_path = '/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/Gambar penyakit rumput laut'
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
+# dataset_path = '/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/Gambar penyakit rumput laut/'
+dataset_path = os.path.join(dir_path, "Gambar penyakit rumput laut")
 
 # Create a list of class names
 class_names = ['penyakit bulu kucing', 'penyakit ice-ice', 'penyakit kerak bryzoan', 'rumput laut sehat'] 
@@ -90,6 +94,8 @@ if(is_rumput_laut['prediction']):
 
     # Make predictions on the chosen image
     prediction = knn_model.predict(img_array)
+    distances, indices = knn_model.kneighbors(img_array)
+    print(distances,indices)
 
     # Display the image with class names
     plt.imshow(img)

@@ -1,17 +1,19 @@
-# import os
 import ast
 import numpy as np
 import tensorflow as tf
-# from tensorflow.keras.preprocessing import image
-# from tensorflow.keras.preprocessing.image import ImageDataGenerator
+import os 
 from sklearn.neighbors import KNeighborsClassifier
-# from sklearn.metrics import accuracy_score
 from flask import Flask, request, jsonify
+import google.generativeai as genai
+import PIL.Image
 
 app = Flask(__name__)
 
 # Set the path to your custom dataset
-dataset_path = '/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/Gambar penyakit rumput laut/'
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
+# dataset_path = '/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/Gambar penyakit rumput laut/'
+dataset_path = os.path.join(dir_path, "Gambar penyakit rumput laut")
 
 # Create a list of class names
 class_names = ['penyakit bulu kucing', 'penyakit ice-ice', 'penyakit kerak bryzoan', 'rumput laut sehat'] 
@@ -39,11 +41,6 @@ x_train = x_train.reshape(x_train.shape[0], -1)
 k_value = 5
 knn_model = KNeighborsClassifier(n_neighbors=k_value)
 knn_model.fit(x_train, y_train.argmax(axis=1))
-
-
-import google.generativeai as genai
-
-import PIL.Image
 
 GOOGLE_API_KEY="AIzaSyBZQ7ddMSnbvKFIiILqPr8amtPacqkhHDk"
 
