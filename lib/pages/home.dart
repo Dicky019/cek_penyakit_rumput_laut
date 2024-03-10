@@ -69,6 +69,7 @@ _showCustomDialog(BuildContext context, TextEditingController controller) {
           TextButton(
             onPressed: () {
               DataConstants.apiUrl = httpString + controller.text + port;
+              Navigator.of(context).pop();
             },
             child: const Text('Simpan'),
           ),
