@@ -39,25 +39,30 @@ class PredictionPenyakitRumputLautService {
   }
 
   Future<PenyakitRumputLaut?> predictImage(ImageSource imageSource) async {
-    final imageX = await imagePicker.pickImage(
-      source: imageSource,
-    );
-
-    if (imageX != null) {
-      EasyLoading.show();
-      log('File', name: "imageX");
-      final image = File(imageX.path);
-      // await Future.delayed(const Duration(seconds: 1));
-      final result = await uploadFile(image);
-      log(result.toString(), name: "result");
-
-      EasyLoading.dismiss();
-      return PenyakitRumputLaut.fromResult(
-        result,
-        image,
+    try {
+      final imageX = await imagePicker.pickImage(
+        source: imageSource,
       );
-    }
 
-    return null;
+      if (imageX != null) {
+        EasyLoading.show();
+        log('File', name: "imageX");
+        final image = File(imageX.path);
+        // await Future.delayed(const Duration(seconds: 1));
+        final result = await uploadFile(image);
+        log(result.toString(), name: "result");
+
+        EasyLoading.dismiss();
+        return PenyakitRumputLaut.fromResult(
+          result,
+          image,
+        );
+      }
+
+      return null;
+    } catch (e) {
+      log(e.toString(), name: "error imagePicker");
+      return null;
+    }
   }
 }
