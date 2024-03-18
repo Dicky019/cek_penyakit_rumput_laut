@@ -47,6 +47,7 @@ class _DeteksiPenyakitRumputLautWidgetState
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               TextButton.icon(
+<<<<<<< HEAD
                 onPressed: () async {
                   // Obtain a list of the available cameras on the device.
                   final cameras = await availableCameras();
@@ -70,6 +71,14 @@ class _DeteksiPenyakitRumputLautWidgetState
                   if (value != null) {
                     _showCustomDialog(context, data: value);
                   }
+=======
+                onPressed: () {
+                  service.getImage().then((value) {
+                    if (value != null) {
+                      _showCustomDialog(context, data: value);
+                    }
+                  });
+>>>>>>> d2c96e1 (.)
                 },
                 icon: const Icon(
                   Icons.camera,
