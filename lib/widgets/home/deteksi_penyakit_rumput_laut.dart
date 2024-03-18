@@ -44,7 +44,7 @@ class _DeteksiPenyakitRumputLautWidgetState
             children: [
               TextButton.icon(
                 onPressed: () {
-                  service.predictImage(ImageSource.camera).then((value) {
+                  service.getImage().then((value) {
                     if (value != null) {
                       _showCustomDialog(context, data: value);
                     }
