@@ -1,3 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:camera/camera.dart';
+import 'package:cek_penyakit_rumput_laut/widgets/home/take_image_camera.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -43,12 +47,29 @@ class _DeteksiPenyakitRumputLautWidgetState
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               TextButton.icon(
-                onPressed: () {
-                  service.predictImage(ImageSource.camera).then((value) {
-                    if (value != null) {
-                      _showCustomDialog(context, data: value);
-                    }
-                  });
+                onPressed: () async {
+                  // Obtain a list of the available cameras on the device.
+                  final cameras = await availableCameras();
+
+                  // Get a specific camera from the list of available cameras.
+                  final firstCamera = cameras.first;
+                  final result = await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TakeImageCamera(
+                              camera: firstCamera,
+                            )),
+                  ) as String?;
+
+                  if (result == null) {
+                    return;
+                  }
+
+                  final value = await service.chaeckImage(result);
+
+                  if (value != null) {
+                    _showCustomDialog(context, data: value);
+                  }
                 },
                 icon: const Icon(
                   Icons.camera,

@@ -11,7 +11,7 @@ import '../constants/data.dart';
 class PredictionPenyakitRumputLautService {
   final imagePicker = ImagePicker();
 
-  Future<Map<String, dynamic>> uploadFile(File file) async {
+  Future<Map<String, dynamic>?> uploadFile(File file) async {
     var request =
         http.MultipartRequest('POST', Uri.parse(DataConstants.apiUrl));
     request.files.add(await http.MultipartFile.fromPath('file', file.path));
@@ -32,10 +32,35 @@ class PredictionPenyakitRumputLautService {
       }
     } catch (e) {
       log('Error: $e');
+      // Return an empty map in case of failure
+      return null;
     }
+    return null;
+  }
 
-    // Return an empty map in case of failure
-    return {};
+  Future<PenyakitRumputLaut?> chaeckImage(String imagePath) async {
+    try {
+      EasyLoading.show();
+      log('File', name: "imageX");
+      final image = File(imagePath);
+      // await Future.delayed(const Duration(seconds: 1));
+      final result = await uploadFile(image);
+      if (result == null) {
+        EasyLoading.dismiss();
+        return null;
+      }
+
+      log(result.toString(), name: "result");
+
+      EasyLoading.dismiss();
+      return PenyakitRumputLaut.fromResult(
+        result,
+        image,
+      );
+    } catch (e) {
+      log(e.toString());
+      return null;
+    }
   }
 
   Future<PenyakitRumputLaut?> predictImage(ImageSource imageSource) async {
@@ -45,18 +70,7 @@ class PredictionPenyakitRumputLautService {
       );
 
       if (imageX != null) {
-        EasyLoading.show();
-        log('File', name: "imageX");
-        final image = File(imageX.path);
-        // await Future.delayed(const Duration(seconds: 1));
-        final result = await uploadFile(image);
-        log(result.toString(), name: "result");
-
-        EasyLoading.dismiss();
-        return PenyakitRumputLaut.fromResult(
-          result,
-          image,
-        );
+        return chaeckImage(imageX.path);
       }
 
       return null;
