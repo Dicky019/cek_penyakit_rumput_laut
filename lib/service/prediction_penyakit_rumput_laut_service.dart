@@ -47,7 +47,7 @@ class PredictionPenyakitRumputLautService {
       // await Future.delayed(const Duration(seconds: 1));
       final result = await uploadFile(image);
       if (result == null) {
-        EasyLoading.dismiss();
+        EasyLoading.showError("Server Error");
         return null;
       }
 
