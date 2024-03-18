@@ -193,11 +193,15 @@ class DialogSuccsec extends StatelessWidget {
           ],
         ),
         const Divider(),
-        Text(
-          data.solusi,
-          textAlign: TextAlign.left,
-          style: const TextStyle(
-            fontSize: 16,
+        Expanded(
+          child: SingleChildScrollView(
+            child: Text(
+              data.solusi,
+              textAlign: TextAlign.left,
+              style: const TextStyle(
+                fontSize: 16,
+              ),
+            ),
           ),
         ),
       ],
