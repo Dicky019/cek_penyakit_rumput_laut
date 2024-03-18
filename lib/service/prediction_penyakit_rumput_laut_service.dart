@@ -5,6 +5,7 @@ import 'package:cek_penyakit_rumput_laut/models/penyakit_rumput_laut.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:images_picker/images_picker.dart';
 
 import '../constants/data.dart';
 
@@ -36,6 +37,33 @@ class PredictionPenyakitRumputLautService {
 
     // Return an empty map in case of failure
     return {};
+  }
+
+  Future getImage() async {
+    try {
+      List<Media>? res = await ImagesPicker.pick(
+        pickType: PickType.image,
+      );
+
+      if (res != null) {
+        EasyLoading.show();
+        log('File', name: "imageX");
+        final image = File(res.first.path);
+        // await Future.delayed(const Duration(seconds: 1));
+        final result = await uploadFile(image);
+        log(result.toString(), name: "result");
+
+        EasyLoading.dismiss();
+        return PenyakitRumputLaut.fromResult(
+          result,
+          image,
+        );
+      }
+      return null;
+    } catch (e) {
+      log(e.toString(), name: "error imagePicker");
+      return null;
+    }
   }
 
   Future<PenyakitRumputLaut?> predictImage(ImageSource imageSource) async {
