@@ -42,7 +42,7 @@ k_value = 5
 knn_model = KNeighborsClassifier(n_neighbors=k_value)
 knn_model.fit(x_train, y_train.argmax(axis=1))
 
-GOOGLE_API_KEY="AIzaSyBZQ7ddMSnbvKFIiILqPr8amtPacqkhHDk"
+GOOGLE_API_KEY="AIzaSyAOiZU7wP_HrIJZdQ5wsSn-Kj59dvJji8Y"
 
 genai.configure(api_key=GOOGLE_API_KEY)
 
