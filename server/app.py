@@ -12,7 +12,7 @@ app = Flask(__name__)
 # Set the path to your custom dataset
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-# dataset_path = '/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/Gambar penyakit rumput laut/'
+# dataset_path
 dataset_path = os.path.join(dir_path, "Gambar penyakit rumput laut")
 
 # Create a list of class names
@@ -42,7 +42,7 @@ k_value = 5
 knn_model = KNeighborsClassifier(n_neighbors=k_value)
 knn_model.fit(x_train, y_train.argmax(axis=1))
 
-GOOGLE_API_KEY="AIzaSyAOiZU7wP_HrIJZdQ5wsSn-Kj59dvJji8Y"
+GOOGLE_API_KEY="AIzaSyBfD_j2jhR-w7isZ1EuNy_pBAwZYdVJBLI"
 
 genai.configure(api_key=GOOGLE_API_KEY)
 
