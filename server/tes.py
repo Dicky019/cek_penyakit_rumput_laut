@@ -12,7 +12,7 @@ import google.generativeai as genai
 # Set the path to your custom dataset
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-# dataset_path = '/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/Gambar penyakit rumput laut/'
+# dataset_path
 dataset_path = os.path.join(dir_path, "Gambar penyakit rumput laut")
 
 # Create a list of class names
@@ -21,8 +21,6 @@ class_names = ['penyakit bulu kucing', 'penyakit ice-ice', 'penyakit kerak bryzo
 
 # Choose an image from the validation set
 # Testing
-# image_path = f'/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/bukan rumput laut/1-boto2222.jpg'
-# image_path = f'/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/bukan rumput laut/download (2).jpg'
 image_path = f'{dataset_path}/penyakit bulu kucing/IMG_7026.JPG'
 img = Image.open(image_path).convert('RGB')
 img = img.resize((28, 28))

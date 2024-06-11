@@ -12,7 +12,7 @@ app = Flask(__name__)
 # Set the path to your custom dataset
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-# dataset_path = '/Users/dickydarmawan/Developer/Flutter/cek_penyakit_rumput_laut/server/Gambar penyakit rumput laut/'
+# dataset_path
 dataset_path = os.path.join(dir_path, "Gambar penyakit rumput laut")
 
 # Create a list of class names
