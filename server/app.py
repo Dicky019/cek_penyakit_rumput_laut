@@ -19,7 +19,7 @@ dataset_path = os.path.join(dir_path, "Gambar penyakit rumput laut")
 class_names = ['penyakit bulu kucing', 'penyakit ice-ice', 'penyakit kerak bryzoan', 'rumput laut sehat'] 
 
 # Load images using ImageDataGenerator
-datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
+datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255) # type: ignore
 
 train_generator = datagen.flow_from_directory(
     dataset_path,
